@@ -37,3 +37,9 @@ panda_spider/figs/
 *.swp
 .DS_Store
 Thumbs.db
+
+# Render previews
+panda_analysis/qa_docx_render/
+
+# Old repo shell (can be deleted)
+Tourism-big-data-homework/
