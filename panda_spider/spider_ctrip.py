@@ -70,7 +70,6 @@ CSV_FIELDS = [
     "publishTime",     # 发布时间
     "publishTypeTag",  # "2026-05-11 发布点评" 这种字符串
     "userNick",        # 昵称
-    "userLevel",       # 用户等级
     "ipLocatedName",   # IP 属地
     "touristTypeDisplay",  # 出游类型（家庭/情侣...）
     "usefulCount",     # 有用数
@@ -159,7 +158,6 @@ def parse_items(data: dict, page_index: int, keep_raw_item: bool = False) -> lis
             "publishTime": it.get("publishTime"),
             "publishTypeTag": it.get("publishTypeTag"),
             "userNick": ui.get("userNick"),
-            "userLevel": ui.get("userLevel"),
             "ipLocatedName": it.get("ipLocatedName"),
             "touristTypeDisplay": it.get("touristTypeDisplay"),
             "usefulCount": it.get("usefulCount"),

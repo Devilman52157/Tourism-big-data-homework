@@ -154,7 +154,6 @@ python sample_for_analysis.py --seed 7   # 换随机种子抽一组不同样本
 | publishDate | 解析后的可读时间（仅 clean.csv 有）|
 | publishTypeTag | 形如 "2026-05-11 发布点评" |
 | userNick | 用户昵称（携程已脱敏）|
-| userLevel | 用户等级 |
 | ipLocatedName | IP 属地（省份）|
 | touristTypeDisplay | 出游类型（家庭/情侣/朋友等）|
 | usefulCount | 有用数 |
