@@ -454,8 +454,15 @@ def main():
         print(f"   {row['word']:<8} 国际{row['国际频次']} / 国内{row['国内频次']} (比值 {row['比值']})")
 
     # ---- 保存分词缓存(供阶段2 加速) ----
+    # 阶段1 过滤了机翻样本,但阶段2 使用完整 2000 条。
+    # 为使缓存对阶段2 可用,这里基于完整数据集重新分词并保存。
     from text_utils import save_tokens_cache
-    save_tokens_cache(df)
+    df_full = load_data(DATA_PATH, filter_translated=False)
+    if len(df_full) != len(df):
+        df_full = tokenize_dataframe(df_full, stopwords)
+        save_tokens_cache(df_full)
+    else:
+        save_tokens_cache(df)
 
     print(f"\n✅ 全部产出完成,共 14 个文件,在 {OUT_DIR}\\")
 

@@ -199,7 +199,7 @@ def main():
     # 6. 灌水过滤
     #   同一用户发布 > MAX_USER_POSTS 条
 
-    user_counter = Counter(r.get("userNick", "") for r in rows)
+    user_counter = Counter(r.get("userNick") or "" for r in rows)
     spam_users = {u for u, c in user_counter.items() if c > MAX_USER_POSTS and u}
     if spam_users:
         before = len(rows)

@@ -834,9 +834,11 @@ def build_ch4_results(doc):
     dim_df = pd.read_csv(OUT_DIR / "4_themes" / "dimensions_table.csv")
     # 把"包含的高频词"和"典型评论"列缩短一点,避免太宽
     if "包含的高频词" in dim_df.columns:
-        dim_df["包含的高频词"] = dim_df["包含的高频词"].str.replace("、", "、").str[:60] + "…"
+        dim_df["包含的高频词"] = dim_df["包含的高频词"].str.replace("、", "、").apply(
+            lambda s: (s[:60] + "…") if isinstance(s, str) and len(s) > 60 else s)
     if "典型评论" in dim_df.columns:
-        dim_df["典型评论"] = dim_df["典型评论"].str.replace("\n", " ").str[:40] + "…"
+        dim_df["典型评论"] = dim_df["典型评论"].str.replace("\n", " ").apply(
+            lambda s: (s[:40] + "…") if isinstance(s, str) and len(s) > 40 else s)
     # 只挑核心列
     keep_cols = [c for c in ["维度名称","覆盖评论数","整体情感得分","国内情感得分","国际情感得分"]
                  if c in dim_df.columns]
@@ -928,8 +930,8 @@ def build_ch5_conclusion(doc):
         "本研究主要基于在线评论数据,可能存在样本选择偏差:即发布评论"
         "的游客往往是体验特别好或特别差的群体,未能全面反映所有游客"
         "的真实感受。此外,「国际游客」作为一个集合概念,涵盖了多种"
-        f"文化背景和语言群体,且约 {STATS['pct_translated_intl']}% 的国际样本为机器翻译文本"
-        f"(国际组占 {STATS['pct_translated_intl']}%),机翻过程可能让情感判断偏中性化。未来研究"
+        f"文化背景和语言群体,且约 {STATS['pct_translated']}% 的样本被标记为机器翻译文本"
+        f"(国际组内占 {STATS['pct_translated_intl']}%),机翻过程可能让情感判断偏中性化。未来研究"
         "可进一步细分国际游客群体,并采用机翻识别+人工抽检的方法,以"
         "揭示更深层次的文化差异对目的地形象感知的影响。")
 
