@@ -128,7 +128,7 @@ def plot_monthly(months):
     vals = [counter[k] for k in keys]
     fig, ax = plt.subplots(figsize=(10, 4.5))
     ax.plot(keys, vals, marker="o", color="#52B788", linewidth=2)
-    ax.fill_between(range(len(keys)), vals, alpha=0.2, color="#52B788")
+    ax.fill_between(keys, vals, alpha=0.2, color="#52B788")
     ax.set_title("评论数月度变化")
     ax.set_ylabel("评论数")
     ax.tick_params(axis="x", rotation=45)

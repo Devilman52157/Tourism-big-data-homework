@@ -59,6 +59,8 @@ def _load_stats():
         "n_intl": 1000,
         "date_range": "2024 – 2026",
         "pct_translated_intl": 0.0,
+        "pct_translated": 0.0,
+        "total_tokens": 0,
         "word_dom_n": 1000,
         "word_intl_n": 1000,
         "stopwords_count": 0,
@@ -87,10 +89,18 @@ def _load_stats():
             if len(dates):
                 stats["date_range"] = f"{dates.min().year} – {dates.max().year}"
 
+    # 词频统计
+    freq_csv = OUT_DIR / "1_word_freq" / "all_words_freq.csv"
+    if freq_csv.exists():
+        freq_df = pd.read_csv(freq_csv, encoding="utf-8-sig")
+        stats["total_tokens"] = int(freq_df["count"].sum())
+
     sent_csv = OUT_DIR / "3_sentiment" / "sentiment_results.csv"
     if sent_csv.exists():
         sent = pd.read_csv(sent_csv, encoding="utf-8-sig")
         tr = sent["is_translated"].fillna(False).astype(bool) if "is_translated" in sent else pd.Series(False, index=sent.index)
+        n_tr = int(tr.sum())
+        stats["pct_translated"] = round(n_tr / max(len(sent), 1) * 100, 1)
         if "group" in sent.columns:
             intl = sent["group"] == "国际游客"
             dom = sent["group"] == "国内游客"
@@ -410,9 +420,9 @@ def slide_cover(prs):
     cap_top = Inches(4.7)
     add_hairline(s, MARGIN_X, cap_top, Inches(11.3))
     metrics = [
-        ("2,000", "条评论"),
-        ("27,736", "有效词 token"),
-        ("32.6%", "机译识别"),
+        (f"{STATS.get('sample_n', 2000):,}", "条评论"),
+        (f"{STATS.get('total_tokens', 0):,}", "有效词 token"),
+        (f"{STATS.get('pct_translated', 0)}%", "机译识别"),
         ("Gemini 2.5", "AI 情感判别"),
     ]
     col_w = Inches(2.8)

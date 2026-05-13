@@ -20,6 +20,7 @@ import csv
 import glob
 import re
 import sys
+from collections import Counter
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -42,6 +43,7 @@ OFFTOPIC_KEYWORDS = {
     "酒店", "机场", "江北国际机场", "解放碑", "洪崖洞", "入住", "前台",
     "房间", "客房", "早餐", "洗衣房", "礼宾", "商场", "重庆位置",
     "出租车车程", "行李箱", "床", "毛巾",
+    "双流国际机场", "天府机场", "春熙路", "太古里",
 }
 
 PANDA_SITE_KEYWORDS = {
@@ -196,7 +198,7 @@ def main():
 
     # 6. 灌水过滤
     #   同一用户发布 > MAX_USER_POSTS 条
-    from collections import Counter
+
     user_counter = Counter(r.get("userNick", "") for r in rows)
     spam_users = {u for u, c in user_counter.items() if c > MAX_USER_POSTS and u}
     if spam_users:
