@@ -1,0 +1,39 @@
+# Local secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python caches
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+**/.venv/
+**/venv/
+
+# Generated outputs and data
+panda_analysis/output/
+panda_analysis/data/*.csv
+panda_analysis/*.docx
+panda_analysis/*.pptx
+panda_spider/data/*.csv
+panda_spider/data/*.txt
+panda_spider/figs/
+
+# Backups and local tool state
+**/archive/
+**/.kiro/
+
+# Logs
+*.log
+*.err
+**/*.log
+**/*.err
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

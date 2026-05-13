@@ -1,0 +1,13 @@
+pandas
+numpy
+jieba
+wordcloud
+matplotlib
+networkx
+pyvis
+google-generativeai
+python-dotenv
+pillow
+python-docx
+python-pptx
+lxml

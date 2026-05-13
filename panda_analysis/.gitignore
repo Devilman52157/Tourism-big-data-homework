@@ -1,0 +1,34 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Generated outputs and data
+output/
+data/*.csv
+
+# Backups and local tool state
+archive/
+.kiro/
+
+# Logs
+*.log
+*.err
+**/*.log
+**/*.err
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

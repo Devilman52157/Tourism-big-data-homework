@@ -1,0 +1,30 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Generated data and figures
+data/*.csv
+data/*.txt
+data/ctrip_failed_pages.txt
+figs/
+
+# Backups
+archive/
+
+# Logs
+*.log
+*.err
+**/*.log
+**/*.err
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
